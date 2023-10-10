@@ -2,25 +2,24 @@ package cohenSuther;
 
 class GFG {
 
-	// Defining region codes
+	// Definindo códigos da região
 	static final int INSIDE = 0; // 0000
 	static final int LEFT = 1; // 0001
 	static final int RIGHT = 2; // 0010
 	static final int BOTTOM = 4; // 0100
 	static final int TOP = 8; // 1000
 
-	// Defining x_max, y_max and x_min, y_min for
-	// clipping rectangle. Since diagonal points are
-	// enough to define a rectangle
+	// Definindo x_max, y_max and x_min, y_min para o recorte do retângulo.
+	// Desde que os pontos diagonais sejam suficientes para definir um retângulo.
 	static final int x_max = 10;
 	static final int y_max = 8;
 	static final int x_min = 4;
 	static final int y_min = 4;
 
-	// Function to compute region code for a point(x, y)
+	// Função para calcular o código da região de um ponto(x, y)
 	static int computeCode(double x, double y)
 	{
-		// initialized as being inside
+		// Inicializado como estando dentro
 		int code = INSIDE;
 
 		if (x < x_min) // to the left of rectangle
@@ -35,7 +34,7 @@ class GFG {
 		return code;
 	}
 
-	// Implementing Cohen-Sutherland algorithm
+	// Implementando o algoritmo Cohen-Sutherland
 	// Clipping a line from P1 = (x2, y2) to P2 = (x2, y2)
 	static void cohenSutherlandClip(double x1, double y1,
 									double x2, double y2)
