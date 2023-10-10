@@ -22,24 +22,24 @@ class GFG {
 		// Inicializado como estando dentro
 		int code = INSIDE;
 
-		if (x < x_min) // to the left of rectangle
+		if (x < x_min) // à esquerda do retângulo
 			code |= LEFT;
-		else if (x > x_max) // to the right of rectangle
+		else if (x > x_max) // à direita do retângulo
 			code |= RIGHT;
-		if (y < y_min) // below the rectangle
+		if (y < y_min) // abaixo do retângulo
 			code |= BOTTOM;
-		else if (y > y_max) // above the rectangle
+		else if (y > y_max) // acima do retângulo
 			code |= TOP;
 
 		return code;
 	}
 
 	// Implementando o algoritmo Cohen-Sutherland
-	// Clipping a line from P1 = (x2, y2) to P2 = (x2, y2)
+	// Recortando uma linha de P1 = (x2, y2) to P2 = (x2, y2)
 	static void cohenSutherlandClip(double x1, double y1,
 									double x2, double y2)
 	{
-		// Compute region codes for P1, P2
+		// Calcular códigos de região para P1, P2
 		int code1 = computeCode(x1, y1);
 		int code2 = computeCode(x2, y2);
 
@@ -144,5 +144,5 @@ class GFG {
 		cohenSutherlandClip(1, 5, 4, 1);
 	}
 }
- 
+
 // This code is contributed by jain_mudit.
