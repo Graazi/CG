@@ -43,68 +43,67 @@ class GFG {
 		int code1 = computeCode(x1, y1);
 		int code2 = computeCode(x2, y2);
 
-		// Initialize line as outside the rectangular window
+		// Inicializar linha como fora da janela retangular
 		boolean accept = false;
 
 		while (true) {
 			if ((code1 == 0) && (code2 == 0)) {
-				// If both endpoints lie within rectangle
+				// Se ambos os pontos de extremidade estiverem dentro do retângulo
 				accept = true;
 				break;
 			}
 			else if ((code1 & code2) != 0) {
-				// If both endpoints are outside rectangle,
-				// in same region
+				//  Se ambos os pontos de extremidade estiverem fora do retângulo
+				// na mesma região
 				break;
 			}
 			else {
-				// Some segment of line lies within the
-				// rectangle
+				// Algum segmento de linha encontra-se dentro do retângulo
 				int code_out;
 				double x = 0, y = 0;
 
 				// At least one endpoint is outside the
-				// rectangle, pick it.
+				// retângulo, pick it.
 				if (code1 != 0)
 					code_out = code1;
 				else
 					code_out = code2;
 
-				// Find intersection point;
-				// using formulas y = y1 + slope * (x - x1),
+				// Encontrar pontos de intesecção;
+				// usando formulas y = y1 + slope * (x - x1),
 				// x = x1 + (1 / slope) * (y - y1)
 				if ((code_out & TOP) != 0) {
-					// point is above the clip rectangle
+					// ponto está acima do retângulo do clipe
 					x = x1
 						+ (x2 - x1) * (y_max - y1)
 							/ (y2 - y1);
 					y = y_max;
 				}
 				else if ((code_out & BOTTOM) != 0) {
-					// point is below the rectangle
+					// ponto está abaixo do retângulo
 					x = x1
 						+ (x2 - x1) * (y_min - y1)
 							/ (y2 - y1);
 					y = y_min;
 				}
 				else if ((code_out & RIGHT) != 0) {
-					// point is to the right of rectangle
+					// ponto é à direita do retângulo
 					y = y1
 						+ (y2 - y1) * (x_max - x1)
 							/ (x2 - x1);
 					x = x_max;
 				}
 				else if ((code_out & LEFT) != 0) {
-					// point is to the left of rectangle
+					// ponto é à esquerda do retângulo
 					y = y1
 						+ (y2 - y1) * (x_min - x1)
 							/ (x2 - x1);
 					x = x_min;
 				}
 
-				// Now intersection point x, y is found
-				// We replace point outside rectangle
-				// by intersection point
+				// Agora o ponto de intersecção x, y é encotrado
+				// substituimos ponto fora do retângulo
+				// por ponto de intesecção
 				if (code_out == code1) {
 					x1 = x;
 					y1 = y;
@@ -121,9 +120,7 @@ class GFG {
 			System.out.println("Line accepted from " + x1
 							+ ", " + y1 + " to " + x2
 							+ ", " + y2);
-			// Here the user can add code to display the
-			// rectangle along with the accepted (portion
-			// of) lines
+			// Aqui o usuário pode adicionar código pra exibir o retângulo junto com o aceito (porção de) linhas
 		}
 		else
 			System.out.println("Line rejected");
@@ -131,15 +128,15 @@ class GFG {
 
 	public static void main(String[] args)
 	{
-		// First Line segment
+		// Primeiro seguimento da linha
 		// P11 = (5, 5), P12 = (7, 7)
 		cohenSutherlandClip(5, 5, 7, 7);
 
-		// Second Line segment
+		// Segundo seguimento da linha
 		// P21 = (7, 9), P22 = (11, 4)
 		cohenSutherlandClip(7, 9, 11, 4);
 
-		// Third Line segment
+		// Terceiro seguimento da linha
 		// P31 = (1, 5), P32 = (4, 1)
 		cohenSutherlandClip(1, 5, 4, 1);
 	}
